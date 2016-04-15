@@ -1,0 +1,23 @@
+
+language: android
+group: stable
+dist: trusty
+
+sudo: required
+
+services:
+  - docker
+
+android:
+  components:
+    - platform-tools
+    - tools
+    - build-tools-21.1.1
+    - android-21
+
+script:
+  - docker/build
+  #- docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  #- docker pull hannesd/amos-downloader-image:1.0
+  #- docker build -t hannesd/hannes-android-app-downloader:1.0 docker/
+  #- docker push hannesd/hannes-android-app-downloader:1.0
