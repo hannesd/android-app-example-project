@@ -19,10 +19,19 @@ set -ue
 
 # This script is always executed in the **root** of your repository
 
+# Build the apk file
 ./gradlew clean build
 
+# Copy apk file to docker/assets directory
 echo
 echo "Copying final artifact to docker assets directory"
-rm -rf ./docker/assets
+rm -rf ./docker/assets/*.apk
 mkdir -p ./docker/assets
 cp -v ./build/outputs/apk/*-debug.apk ./docker/assets/demo-app-debug.apk
+
+# Androd + Docker currently not supported by Travis CI
+if [ "${TRAVIS_CI_BUILD:-false}" != true ]; then
+  # Build docker image
+  # --pull: Make sure that the newest version of the base image is always pulled
+  docker build --pull -t osrgroup/android-app-example-project:1.0 docker/
+fi

@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-FROM hannesd/amos-downloader-image:1.0
+FROM osrgroup/amos-downloader-base-image:1.0
 MAINTAINER hannes.dohrn@fau.de
 
 ENV HTML_INDEX_FILE demo-app-debug.apk
